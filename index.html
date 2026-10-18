@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#2f5bea"><link rel="icon" href="icons/favicon-64.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><title>CE Academy – Computer Engineering Self-Study</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#14181f;--mut:#667085;--ac:#2f5bea;--bd:#e2e5ea;--ok:#12a150;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1116;--card:#171b22;--tx:#e8ebf0;--mut:#9aa3b2;--ac:#6f94ff;--bd:#2a303a;--ok:#3ddc84}}
+:root[data-theme="dark"]{--bg:#0e1116;--card:#171b22;--tx:#e8ebf0;--mut:#9aa3b2;--ac:#6f94ff;--bd:#2a303a;--ok:#3ddc84}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0}.sub{color:var(--mut);margin:0 0 12px}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);width:0;transition:.3s}
+.sem{margin:18px 0 6px;font-weight:700;display:flex;justify-content:space-between}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;cursor:pointer}
+.c:hover{border-color:var(--ac)}.c b{display:block}.c small{color:var(--mut)}.c.done{border-color:var(--ok)}
+.top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}
+button{background:var(--ac);color:#fff;border:0;border-radius:9px;padding:9px 13px;font:inherit;cursor:pointer}
+button.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}button:disabled{opacity:.5}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.tabs button{background:var(--card);color:var(--tx);border:1px solid var(--bd)}.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.out{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;overflow-x:auto;min-height:120px}
+.out h2,.out h3,.out h4{margin:14px 0 6px}.out pre{background:var(--bg);padding:10px;border-radius:8px;overflow-x:auto}.out code{background:var(--bg);padding:1px 4px;border-radius:4px}
+.hide{display:none}.out hr{border:0;border-top:1px solid var(--bd);margin:14px 0}.tr{display:flex;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--bd)}.opt{display:block;width:100%;text-align:left;margin:7px 0;background:var(--card);color:var(--tx);border:1px solid var(--bd)}.opt.ok{border-color:var(--ok);background:rgba(18,161,80,.16)}.opt.bad{border-color:#e5484d;background:rgba(229,72,77,.16)}select{padding:8px;border-radius:9px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit}small{color:var(--mut)}label{display:flex;gap:6px;align-items:center;color:var(--mut)}
+</style>
+<style>
+:root{--ac2:#7a4dea;--sh:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);--r:14px}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{padding:20px 16px 48px}
+#home>h1{font-size:30px;letter-spacing:-.02em;margin:6px 0 4px;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{position:relative;padding:22px 20px;margin-bottom:18px;border-radius:18px;background:linear-gradient(135deg,rgba(47,91,234,.12),rgba(122,77,234,.12));border:1px solid var(--bd)}
+.hero .sub{margin:6px 0 12px;max-width:62ch}
+#tg{position:static;width:100%;height:auto;border-radius:10px;font-size:inherit;line-height:inherit;padding:10px 12px;border:0;white-space:nowrap}
+.bar{height:10px;border-radius:99px}.bar i{background:linear-gradient(90deg,var(--ac),var(--ok));border-radius:99px}
+.sem{margin:26px 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);align-items:center}
+.sem span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ac);margin-right:8px}
+.c{position:relative;border-radius:var(--r);padding:14px 14px 14px 18px;box-shadow:var(--sh);transition:transform .15s,box-shadow .15s,border-color .15s;overflow:hidden}
+.c::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--ac),var(--ac2))}
+.c.done::before{background:var(--ok)}
+.c:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,24,40,.12)}
+.c b{font-size:15px;margin-bottom:3px}.c small{display:block;line-height:1.4}
+button{border-radius:10px;font-weight:600;transition:filter .15s,transform .1s}button:hover{filter:brightness(1.08)}button:active{transform:scale(.98)}
+.tabs{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0;margin:6px 0;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+.tabs button{white-space:nowrap;border-radius:99px;padding:8px 15px;font-weight:600}
+.out{border-radius:var(--r);padding:20px clamp(14px,3vw,30px);box-shadow:var(--sh);line-height:1.7}
+.out h2{font-size:22px;padding-bottom:6px;border-bottom:2px solid var(--bd);margin-top:26px}
+.out h3{font-size:18px;color:var(--ac);margin-top:22px}.out h4{font-size:15px;margin-top:16px}
+.out b{color:var(--tx)}
+.out pre{border:1px solid var(--bd);font-size:13px;line-height:1.5}
+.stp{display:inline-block;min-width:3.9em;margin-right:6px;padding:0 8px;border-radius:99px;background:rgba(47,91,234,.13);color:var(--ac);font-size:12px;font-weight:700;text-align:center;line-height:1.7}
+.hero + #weak:empty{display:none}
+@media (max-width:520px){.out{padding:14px 12px}#home>h1{font-size:25px}}
+@media print{.tabs,.top,#tg{display:none}.out{box-shadow:none;border:0}}
+</style>
+<style>
+.shell{display:flex;min-height:100vh}
+#side{width:252px;flex:none;position:sticky;top:0;height:100vh;overflow:auto;background:var(--card);border-right:1px solid var(--bd);padding:18px 12px;display:flex;flex-direction:column;gap:3px;z-index:30}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 16px;font-weight:800;font-size:17px;letter-spacing:-.01em}
+.brand img{border-radius:10px;background:#fff;flex:none}.brand i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;display:grid;place-items:center;font-style:normal;font-size:15px}
+.nv{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:transparent;color:var(--tx);border:0;border-radius:10px;padding:10px 12px;font-weight:600}
+.nv:hover{background:var(--bg);filter:none}.nv.on{background:rgba(47,91,234,.12);color:var(--ac)}
+.nv span.ic{width:20px;text-align:center}.nv em{margin-left:auto;font-style:normal;font-size:12px;background:#e5484d;color:#fff;border-radius:99px;padding:1px 7px}
+.nlab{margin:16px 12px 4px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.ymini{padding:6px 12px}.ymini div{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);margin-bottom:3px}
+.ymini .bar{height:6px}
+.sfoot{margin-top:auto;padding-top:12px}
+.main{flex:1;min-width:0}
+#mbar{display:none}
+#ov{display:none}
+.dhero{display:flex;align-items:center;gap:16px}.dhero img{border-radius:16px;background:#fff;box-shadow:var(--sh);flex:none}@media(max-width:520px){.dhero img{width:72px;height:72px}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.stat b{display:block;font-size:26px;letter-spacing:-.02em;line-height:1.1}.stat small{color:var(--mut)}
+.dgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:16px;box-shadow:var(--sh);margin-bottom:14px}
+.card h3{margin:0 0 10px;font-size:15px}
+.ringrow{display:flex;align-items:center;gap:18px}
+.ring{width:96px;height:96px;flex:none}.ring circle{fill:none;stroke-width:10}
+.ring .bg{stroke:var(--bd)}.ring .fg{stroke:url(#rg);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .6s}
+.ring text{font:800 20px system-ui;fill:var(--tx);text-anchor:middle;dominant-baseline:central}
+.yrow{margin:10px 0}.yrow div{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.hrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.hrow:last-child{border:0}
+.pill{display:inline-block;border-radius:99px;padding:1px 9px;font-size:12px;font-weight:700}
+.pill.g{background:rgba(18,161,80,.15);color:var(--ok)}.pill.y{background:rgba(245,166,35,.18);color:#c77d0a}.pill.r{background:rgba(229,72,77,.15);color:#e5484d}
+.road{position:relative;margin-left:8px;padding-left:22px;border-left:3px solid var(--bd)}
+.yhead{position:relative;margin:26px 0 8px;font-size:20px;font-weight:800;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.yhead::before{content:"";position:absolute;left:-33px;top:6px;width:17px;height:17px;border-radius:50%;background:var(--ac);border:4px solid var(--bg)}
+.yhead small{font-size:13px;color:var(--mut);font-weight:600}
+.shead{margin:14px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);font-weight:700}
+.crs{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;margin:6px 0;cursor:pointer;transition:border-color .15s,transform .15s}
+.crs:hover{border-color:var(--ac);transform:translateX(3px)}
+.dot{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;border:2px solid var(--bd);color:var(--mut)}
+.crs.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}.crs.prog .dot{border-color:var(--ac);color:var(--ac)}
+.crs .t{flex:1;min-width:0}.crs .t b{display:block}.crs .t small{color:var(--mut);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crs .mini{width:70px;flex:none}.crs .mini .bar{height:6px}.crs .mini small{text-align:right;font-size:11px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.filters button{border-radius:99px;padding:6px 13px}
+@media (max-width:900px){
+ #side{position:fixed;left:0;top:0;transform:translateX(-102%);transition:transform .22s;box-shadow:0 0 40px rgba(0,0,0,.3);width:270px}
+ body.menu #side{transform:none}
+ body.menu #ov{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:25}
+ #mbar{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--bd);padding:10px 14px;font-weight:800}
+ #mbar button{padding:6px 11px;font-size:18px}
+ .dgrid{grid-template-columns:1fr}
+ .tabs{top:52px}
+}
+@media (max-width:640px){.tabs{flex-wrap:wrap;position:static;overflow:visible;gap:6px}.tabs button{padding:7px 12px;font-size:14px}#ct{font-size:24px}}
+@media (max-width:520px){.crs .mini{display:none}.ringrow{flex-direction:column;align-items:flex-start}}
+</style>
+</head><body><div class="shell">
+<aside id="side">
+<div class="brand"><img src="icons/icon-192.png" alt="" width="40" height="40"><span>Creative CE Academy</span></div>
+<button class="nv" data-v="dash"><span class="ic">▦</span>Dashboard</button>
+<button class="nv" data-v="road"><span class="ic">⛰</span>Roadmap</button>
+<button class="nv" data-v="weak"><span class="ic">⚑</span>Weak spots<em id="wk" class="hide"></em></button>
+<div class="nlab">Progress by year</div>
+<div id="ymini"></div>
+<div class="sfoot"><button class="nv" id="tg"><span class="ic">◐</span>Light / dark</button></div>
+</aside>
+<div id="ov"></div>
+<div class="main">
+<div id="mbar"><button class="g" id="mb" aria-label="Menu">☰</button><img src="icons/icon-192.png" alt="" width="28" height="28" style="border-radius:7px;background:#fff"><span id="mt">Dashboard</span></div>
+<div class="wrap">
+<div id="home"></div>
+<div id="course" class="hide">
+<div class="top"><button class="g" id="back">← Roadmap</button><label><input type="checkbox" id="dn"> Mark course complete</label></div>
+<h1 id="ct"></h1><p class="sub" id="cs"></p>
+<div class="tabs" id="tabs"></div>
+<div class="top" id="genrow"><button class="g" id="dl">Save</button><span class="sub" id="st"></span></div>
+<div class="out" id="out">Pick a section above.</div>
+</div></div></div></div>
+<script>
+const SEM=[
+["Year 1 · Sem 1",[["Calculus I","limits, derivatives, integrals, series"],["Linear Algebra","matrices, vector spaces, eigenvalues, SVD"],["Physics I (Mechanics & Waves)","kinematics, dynamics, energy, oscillations"],["Intro to Programming (C/Python)","control flow, functions, pointers, memory, debugging"],["Engineering Communication & Ethics","technical writing, standards, professional ethics"]]],
+["Year 1 · Sem 2",[["Calculus II & ODEs","multivariable calculus, differential equations, Laplace"],["Physics II (Electricity & Magnetism)","fields, circuits, Maxwell's equations"],["Discrete Mathematics","logic, proofs, sets, graphs, combinatorics, recurrences"],["Digital Logic Design","Boolean algebra, combinational/sequential, FSMs, HDL basics"],["Object-Oriented Programming","classes, inheritance, templates, design patterns"]]],
+["Year 2 · Sem 1",[["Circuit Analysis I","KVL/KCL, Thevenin, RC/RL/RLC, phasors"],["Data Structures & Algorithms","arrays, trees, heaps, hashing, graphs, complexity"],["Probability & Statistics","distributions, estimation, hypothesis testing, Markov chains"],["Computer Organization","ISA, datapath, pipelining, caches, memory hierarchy"],["Electronics I (Semiconductor Devices)","diodes, BJT, MOSFET, biasing, amplifiers"]]],
+["Year 2 · Sem 2",[["Signals & Systems","convolution, Fourier, Laplace, z-transform, sampling"],["Microprocessors & Embedded Systems","ARM/AVR, interrupts, timers, GPIO, UART/SPI/I2C"],["Electronics II (Analog Design)","op-amps, feedback, filters, oscillators, power stages"],["Numerical Methods","root finding, interpolation, linear solvers, error analysis"],["Database Systems","relational model, SQL, normalization, transactions, indexing"]]],
+["Year 3 · Sem 1",[["Computer Architecture","superscalar, OoO, branch prediction, multicore, GPUs"],["Operating Systems","processes, scheduling, synchronization, virtual memory, file systems"],["Digital Signal Processing","DFT/FFT, FIR/IIR design, multirate, adaptive filters"],["Control Systems","transfer functions, root locus, Bode, PID, state-space"],["VLSI & Digital IC Design","CMOS logic, timing, layout, Verilog/VHDL, FPGA flow"]]],
+["Year 3 · Sem 2",[["Computer Networks","TCP/IP, routing, congestion control, wireless, sockets"],["Software Engineering","requirements, UML, testing, CI/CD, agile, version control"],["Communication Systems","modulation, noise, channel capacity, coding, OFDM"],["Real-Time & Embedded OS","RTOS, scheduling theory, drivers, memory-constrained design"],["Electromagnetics & Antennas","waves, transmission lines, waveguides, antennas"]]],
+["Year 4 · Sem 1",[["Machine Learning & AI","regression, neural nets, optimization, deep learning, deployment"],["Computer & Network Security","cryptography, authentication, secure systems, attacks/defense"],["IoT & Cyber-Physical Systems","sensors, wireless protocols, edge computing, cloud integration"],["Compilers & Programming Languages","lexing, parsing, IR, optimization, code generation"],["Final Year Project I","proposal, literature review, design, planning"]]],
+["Year 4 · Sem 2",[["Parallel & Distributed Computing","threads, MPI, CUDA, consensus, fault tolerance"],["Robotics & Mechatronics","kinematics, actuators, sensor fusion, SLAM basics"],["Power Electronics & Energy Systems","converters, inverters, motor drives, batteries"],["Engineering Management & Entrepreneurship","project management, economics, IP, startups"],["Final Year Project II","implementation, testing, thesis, defense"]]]];
+const SECT0={
+notes:["Comprehensive Notes","Write university-level, in-depth lecture notes covering the full scope of this course: definitions, theory, derivations, worked examples, diagrams described in text, common pitfalls and real-world applications. Organize as numbered chapters."],
+plan:["Study Plan & Resources","Give a week-by-week study plan (12-14 weeks) with learning objectives, key textbooks (with authors), free online courses, lab/practice projects and a milestone checklist."],
+assign:["Assignments","Write 3 graded assignments with 5-6 problems each (mixed theory, calculation, coding or design), increasing difficulty, marks per question, and then a full worked solutions & marking guide."],
+test:["Class Test","Write a 60-minute class test (about 15 MCQs and 4 short-answer/calculation problems) with marks, and then the full answer key with explanations."],
+exam:["Final Exam","Write a full 3-hour final exam: Section A (20 MCQs), Section B (6 short questions), Section C (4 long problems, choose 3). Include marks and a complete marking scheme with solutions."]};
+const SECT={topics:["Topics & Weak Spots",""],quiz:["Practice Quiz",""],...SECT0};
+let S={},cur=null,tab="topics",busy=false,last="";
+try{S=JSON.parse(localStorage.getItem("ce")||"{}")}catch(e){}
+const save=()=>{try{const d=new Date().toISOString().slice(0,10);S._days=S._days||[];if(S._days[S._days.length-1]!==d)S._days.push(d);localStorage.setItem("ce",JSON.stringify(S))}catch(e){}};
+(function(){try{const t=localStorage.getItem("ce_theme");if(t)document.documentElement.dataset.theme=t}catch(e){}})();
+const $=id=>document.getElementById(id),esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function md(t){const K=[],S=x=>"@@"+(K.push(x)-1)+"@@";let h=esc(t).replace(/```[a-z]*\n([\s\S]*?)```/g,(m,c)=>S("<pre><code>"+c+"</code></pre>")).replace(/`([^`\n]+)`/g,(m,c)=>S("<code>"+c+"</code>"));
+h=h.replace(/^### (.*)$/gm,"<h4>$1</h4>").replace(/^## (.*)$/gm,"<h3>$1</h3>").replace(/^# (.*)$/gm,"<h2>$1</h2>").replace(/^---+$/gm,"<hr>").replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\*(?!\s)([^*\n]*[^*\s])\*/g,"<i>$1</i>").replace(/^[-*] (.*)$/gm,"• $1").replace(/^(<b>[^<]*<\/b> ?(?:\([a-z]\) )?|\([a-z]\) )?Step (\d+): /gm,(m,a,n)=>(a||"")+'<span class="stp">Step '+n+"</span>");
+h=h.replace(/(<\/h[234]>|<hr>)\n/g,"$1").replace(/\n/g,"<br>").replace(/(<br>){3,}/g,"<br><br>");
+return h.replace(/@@(\d+)@@/g,(m,n)=>K[+n])}
+
+let view="dash",flt="all";
+const ALL=SEM.flatMap(([t,cs])=>cs.map(([c,s])=>({c,s,sem:t,y:+t.charAt(5)})));
+const acc=c=>{let a=0,k=0;const st=(S[c]||{}).st||{};for(const t in st){a+=st[t].a;k+=st[t].c}return{a,c:k,p:a?Math.round(100*k/a):null}};
+const stat=c=>{const x=S[c]||{};return x.done?"done":(acc(c).a||x.seen)?"prog":"new"};
+const weakList=()=>{const w=[];ALL.forEach(({c})=>{const st=(S[c]||{}).st||{};for(const t in st){const s=st[t];if(s.a>=2&&s.c/s.a<.8)w.push([c,t,Math.round(100*s.c/s.a),s.a])}});return w.sort((a,b)=>a[2]-b[2])};
+const streak=()=>{const ds=new Set(S._days||[]);let n=0,d=new Date();const f=x=>x.toISOString().slice(0,10);if(!ds.has(f(d)))d.setDate(d.getDate()-1);while(ds.has(f(d))){n++;d.setDate(d.getDate()-1)}return n};
+const ring=(p)=>`<svg class="ring" viewBox="0 0 100 100"><defs><linearGradient id="rg"><stop offset="0" stop-color="#2f5bea"/><stop offset="1" stop-color="#7a4dea"/></linearGradient></defs><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="${264-264*p/100}"/><text x="50" y="50">${p}%</text></svg>`;
+const pc=p=>p===null?"–":p+"%";
+const ago=t=>{const m=Math.round((Date.now()-t)/6e4);return m<60?m+" min ago":m<1440?Math.round(m/60)+" h ago":Math.round(m/1440)+" d ago"};
+function yearStats(){return [1,2,3,4].map(y=>{const cs=ALL.filter(x=>x.y===y),d=cs.filter(x=>stat(x.c)==="done").length;return{y,n:cs.length,d,p:Math.round(100*d/cs.length)}})}
+function weakHTML(w,lim){return w.length?w.slice(0,lim).map(([c,t,p],i)=>`<div class="hrow"><div style="min-width:0"><b>${esc(t)}</b><br><small style="color:var(--mut)">${esc(c)} · ${p}% correct</small></div><button data-w="${i}">Practice</button></div>`).join(""):`<p class="sub">No weak topics yet. Take a few practice quizzes and the topics you miss will appear here.</p>`}
+function bindWeak(w){document.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{const [c,t]=w[+b.dataset.w];loadPack(c).then(()=>{open(c);startQuiz(t,8)})})}
+function courseRow(x){const k=stat(x.c),a=acc(x.c);return`<div class="crs ${k}" data-c="${esc(x.c)}"><div class="dot">${k==="done"?"✓":k==="prog"?"◐":""}</div><div class="t"><b>${esc(x.c)}</b><small>${esc(x.s)}</small></div><div class="mini"><div class="bar"><i style="width:${a.p||0}%;background:${col(a.p)}"></i></div><small>${a.a?a.p+"% · "+a.a+" Q":"no quiz yet"}</small></div></div>`}
+function bindCourses(){document.querySelectorAll("[data-c]").forEach(e=>e.onclick=()=>open(e.dataset.c))}
+function vDash(){
+const done=ALL.filter(x=>stat(x.c)==="done").length,prog=ALL.filter(x=>stat(x.c)==="prog").length,n=ALL.length,p=Math.round(100*done/n);
+let A=0,C=0;ALL.forEach(x=>{const a=acc(x.c);A+=a.a;C+=a.c});const ap=A?Math.round(100*C/A):null;
+const hist=[];ALL.forEach(x=>((S[x.c]||{}).hist||[]).forEach(h=>hist.push({...h,c:h.c||x.c})));hist.sort((a,b)=>b.d-a.d);
+const next=ALL.find(x=>stat(x.c)!=="done"),last=S._last&&find(S._last)?S._last:null,w=weakList();
+const ys=yearStats();
+$("home").innerHTML=`<div class="dhero"><img src="icons/logo-640.png" alt="Creative Computer Engineering Academy" width="110" height="110"><div><h1 style="margin:4px 0 2px">Dashboard</h1><p class="sub" style="margin:0">Your progress through the 4-year Computer Engineering programme.</p></div></div>
+<div class="stats"><div class="stat"><b>${done}<span style="font-size:15px;color:var(--mut)"> / ${n}</span></b><small>courses complete</small></div><div class="stat"><b>${prog}</b><small>in progress</small></div><div class="stat"><b>${pc(ap)}</b><small>quiz accuracy (${A} answered)</small></div><div class="stat"><b>${streak()} <span style="font-size:15px">day${streak()===1?"":"s"}</span></b><small>study streak · ${(S._days||[]).length} active days</small></div></div>
+<div class="dgrid"><div>
+<div class="card"><div class="ringrow">${ring(p)}<div style="flex:1"><h3 style="margin:0">Programme progress</h3><p class="sub" style="margin:2px 0 0">${n-done} courses to go.</p>${ys.map(y=>`<div class="yrow"><div><span>Year ${y.y}</span><span>${y.d}/${y.n}</span></div><div class="bar"><i style="width:${y.p}%"></i></div></div>`).join("")}</div></div></div>
+<div class="card"><h3>Continue</h3>${last?`<div class="hrow"><div><b>${esc(last)}</b><br><small style="color:var(--mut)">Last opened</small></div><button data-go="${esc(last)}">Resume</button></div>`:""}${next?`<div class="hrow"><div><b>${esc(next.c)}</b><br><small style="color:var(--mut)">Next up · ${esc(next.sem)}</small></div><button class="g" data-go="${esc(next.c)}">Open</button></div>`:`<p class="sub">All courses complete. Well done!</p>`}</div>
+<div class="card"><h3>Recent quizzes</h3>${hist.length?hist.slice(0,6).map(h=>{const q=Math.round(100*h.s/h.n);return`<div class="hrow"><div style="min-width:0"><b>${esc(h.c)}</b><br><small style="color:var(--mut)">${esc(h.t)} · ${ago(h.d)}</small></div><span class="pill ${q>=80?"g":q>=60?"y":"r"}">${h.s}/${h.n}</span></div>`}).join(""):`<p class="sub">No quizzes yet. Open a course and use the Practice Quiz tab.</p>`}</div>
+</div><div>
+<div class="card"><h3>Weak topics to revisit</h3>${weakHTML(w,6)}${w.length>6?`<button class="g" data-v2="weak">See all ${w.length}</button>`:""}</div>
+<div class="card"><h3>Roadmap snapshot</h3>${ys.map(y=>`<div class="hrow"><span>Year ${y.y}</span><span class="pill ${y.p===100?"g":y.d?"y":""}" style="${y.d||y.p===100?"":"background:var(--bg);color:var(--mut)"}">${y.p}%</span></div>`).join("")}<button class="g" data-v2="road" style="margin-top:10px">Open roadmap</button></div>
+</div></div>`;
+bindWeak(w);document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>open(b.dataset.go));document.querySelectorAll("[data-v2]").forEach(b=>b.onclick=()=>go(b.dataset.v2))}
+function vRoad(){
+const f=x=>flt==="all"||stat(x.c)===flt;
+const fb=[["all","All"],["new","Not started"],["prog","In progress"],["done","Complete"]];
+let h=`<h1 style="margin:4px 0 2px">Roadmap</h1><p class="sub">Year by year, semester by semester. Open any course to study it.</p><div class="filters">${fb.map(([k,l])=>`<button class="${flt===k?"":"g"}" data-f="${k}">${l}</button>`).join("")}</div><div class="road">`;
+[1,2,3,4].forEach(y=>{const ys=yearStats()[y-1];h+=`<div class="yhead" id="y${y}"><span>Year ${y}</span><small>${ys.d} of ${ys.n} complete · ${ys.p}%</small></div>`;
+SEM.filter(([t])=>+t.charAt(5)===y).forEach(([t,cs])=>{const rows=cs.map(([c,s])=>({c,s})).filter(f);if(rows.length)h+=`<div class="shead">${t.split("· ")[1]}</div>`+rows.map(courseRow).join("")})});
+$("home").innerHTML=h+"</div>";
+document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{flt=b.dataset.f;vRoad()});bindCourses()}
+function vWeak(){const w=weakList();$("home").innerHTML=`<h1 style="margin:4px 0 2px">Weak spots</h1><p class="sub">Topics where you scored under 80% over at least 2 answers. Practise them until they turn green.</p><div class="card">${weakHTML(w,100)}</div>`;bindWeak(w)}
+function sidebar(){const ys=yearStats();$("ymini").innerHTML=ys.map(y=>`<div class="ymini"><div><span>Year ${y.y}</span><span>${y.d}/${y.n}</span></div><div class="bar"><i style="width:${y.p}%"></i></div></div>`).join("");
+const wn=weakList().length;$("wk").textContent=wn;$("wk").classList.toggle("hide",!wn);
+document.querySelectorAll(".nv[data-v]").forEach(b=>b.classList.toggle("on",b.dataset.v===view&&!$("home").classList.contains("hide")))}
+function render(){({dash:vDash,road:vRoad,weak:vWeak})[view]();sidebar();$("mt").textContent={dash:"Dashboard",road:"Roadmap",weak:"Weak spots"}[view]}
+function go(v){view=v;$("course").classList.add("hide");$("home").classList.remove("hide");document.body.classList.remove("menu");render();scrollTo(0,0)}
+document.querySelectorAll(".nv[data-v]").forEach(b=>b.onclick=()=>go(b.dataset.v));
+$("mb").onclick=()=>document.body.classList.toggle("menu");$("ov").onclick=()=>document.body.classList.remove("menu");
+
+function find(c){for(const[,cs]of SEM)for(const x of cs)if(x[0]===c)return x}
+function open(c){cur=c;const x=find(c);S[c]=S[c]||{};S._last=c;S[c].seen=S[c].seen||Date.now();save();$("home").classList.add("hide");document.body.classList.remove("menu");$("mt").textContent=c;$("course").classList.remove("hide");$("ct").textContent=c;$("cs").textContent="Scope: "+x[1];$("dn").checked=!!S[c].done;Q=null;tabs();show();scrollTo(0,0);loadPack(c).then(()=>{if(cur===c)show()})}
+function tabs(){$("tabs").innerHTML=Object.entries(SECT).map(([k,v])=>`<button class="${k===tab?"on":""}" data-k="${k}">${v[0]}</button>`).join("");document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{tab=b.dataset.k;tabs();show()})}
+function show(){const ui=tab==="topics"||tab==="quiz";$("genrow").classList.toggle("hide",ui);if(tab==="topics")return viewTopics();if(tab==="quiz")return viewQuiz();const t=docOf(cur,tab);last=t||"";$("out").innerHTML=t?md(t):"This section is not available yet.";$("st").textContent=""}
+$("tg").onclick=()=>{const d=document.documentElement,dark=d.dataset.theme?d.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches,n=dark?"light":"dark";d.dataset.theme=n;try{localStorage.setItem("ce_theme",n)}catch(e){}};
+$("dn").onchange=e=>{S[cur].done=e.target.checked;save()};
+$("back").onclick=()=>{$("course").classList.add("hide");$("home").classList.remove("hide");render()};
+$("dl").onclick=async()=>{if(!last)return;const name=cur.replace(/\W+/g,"_")+"_"+tab+".md";
+if(window.pywebview&&pywebview.api&&pywebview.api.save_file){await pywebview.api.save_file(name,last);return}
+const u=URL.createObjectURL(new Blob([last],{type:"text/markdown"})),a=document.createElement("a");a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),2000)};
+
+let Q=null;const PACK={};const slug=c=>c.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+function ld(u){return new Promise(r=>{const s=document.createElement("script");s.src=u;s.onload=()=>r(1);s.onerror=()=>r(0);document.head.appendChild(s)})}
+function loadPack(c){if(PACK[c]!==undefined)return Promise.resolve(PACK[c]);return ld("contents/"+slug(c)+".js").then(()=>ld("contents/"+slug(c)+".docs.js")).then(()=>{PACK[c]=(window.CE_PACK||{})[c]||null;return PACK[c]})}
+const docOf=(c,k)=>((PACK[c]||{}).docs||{})[k]||"";
+function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const topicsOf=c=>find(c)[1].split(",").map(s=>s.trim());
+const stOf=(c,t)=>((S[c]||{}).st||{})[t];
+const pct=s=>s&&s.a?Math.round(100*s.c/s.a):null;
+const col=p=>p===null?"var(--bd)":p<60?"#e5484d":p<80?"#f5a623":"var(--ok)";
+function viewTopics(){const ts=topicsOf(cur),hist=(S[cur].hist||[]).slice(-5).reverse();
+$("out").innerHTML=`<div class="top"><b>Topic breakdown</b><span style="flex:1"></span><button id="qa">Quiz all topics</button><button class="g" id="qw">Quiz my weak spots</button></div>`+ts.map((t,i)=>{const s=stOf(cur,t),p=pct(s);return`<div class="tr"><div style="flex:1"><b>${esc(t)}</b><div class="bar"><i style="width:${p||0}%;background:${col(p)}"></i></div><small>${p===null?"Not attempted yet":p+"% correct ("+s.c+"/"+s.a+")"}${" · "+bankOf(cur)[t].length+" practice questions"}</small></div><button class="g" data-s="${i}">Notes</button><button data-q="${i}">Quiz</button></div>`}).join("")+(hist.length?`<h4>Recent quizzes</h4>`+hist.map(x=>`<small>${new Date(x.d).toLocaleDateString()} · ${x.s}/${x.n} (${Math.round(100*x.s/x.n)}%) · ${esc(x.t)}</small><br>`).join(""):"");
+$("qa").onclick=()=>startQuiz("__all",10);$("qw").onclick=()=>startQuiz("__weak",10);
+document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>lesson(ts[+b.dataset.s]));
+document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>startQuiz(ts[+b.dataset.q],8))}
+function lesson(t){const pl=((PACK[cur]||{}).lessons||{})[t];
+if(pl){const head=`<div class="top"><button class="g" id="bk">← Topics</button><b>${esc(t)}</b></div>`;$("out").innerHTML=head+md(pl);$("bk").onclick=viewTopics;return}
+tab="notes";tabs();show();const w=t.toLowerCase().split(/[^a-z0-9]+/).filter(x=>x.length>3).map(x=>x.slice(0,5));let best=null,bs=0;
+document.querySelectorAll("#out h2,#out h3,#out h4").forEach(h=>{const tx=h.textContent.toLowerCase();let sc=0;w.forEach(x=>{if(tx.includes(x))sc++});if(sc>bs){bs=sc;best=h}});
+if(best){best.scrollIntoView();best.style.borderLeft="4px solid var(--ac)";best.style.paddingLeft="8px"}else scrollTo(0,0)}
+function weakest(n){return topicsOf(cur).map(t=>[t,pct(stOf(cur,t))]).sort((a,b)=>(a[1]===null?-1:a[1])-(b[1]===null?-1:b[1])).slice(0,n).map(x=>x[0])}
+function bankOf(c){const T=topicsOf(c),pk=PACK[c]||{},b={};T.forEach(t=>b[t]=((pk.quiz||{})[t]||[]).slice());
+(pk.mcq||[]).forEach(x=>{const t=T[Math.min(T.length-1,Math.floor(x.f*T.length))];b[t].push({q:x.q,options:x.options,answer:x.answer,explain:x.explain})});return b}
+function viewQuiz(){if(Q)return drawQ();const ts=topicsOf(cur),bk=bankOf(cur),tot=ts.reduce((a,t)=>a+bk[t].length,0);
+$("out").innerHTML=`<h3>Practice quiz</h3><p class="sub">Multiple-choice questions from this course (${tot} in the bank), scored instantly, with explanations. Results feed your weak-topic tracker.</p><div class="top"><select id="qt"><option value="__all">All topics</option><option value="__weak">My weakest 3 topics</option>${ts.map(t=>`<option>${esc(t)}</option>`).join("")}</select><select id="qn"><option>5</option><option selected>10</option><option>15</option></select><button id="qs">Start quiz</button></div><small id="qe"></small>`;
+$("qs").onclick=()=>startQuiz($("qt").value,+$("qn").value)}
+function startQuiz(topic,n){tab="quiz";tabs();$("genrow").classList.add("hide");const all=topicsOf(cur),list=topic==="__all"?all:topic==="__weak"?weakest(3):[topic],bank=bankOf(cur),pool=[];
+list.forEach(t=>(bank[t]||[]).forEach(x=>pool.push({...x,topic:t})));
+if(!pool.length){$("out").innerHTML=`No questions are available for this selection.<br><br><button id="rt">Back</button>`;$("rt").onclick=viewQuiz;return}
+const items=shuf(pool).slice(0,n).map(x=>{const o=x.options.map((v,i)=>[v,i===x.answer]),s=shuf(o);return{...x,options:s.map(y=>y[0]),answer:s.findIndex(y=>y[1])}});
+Q={items,i:0,score:0,res:[],sel:null,label:topic==="__all"?"All topics":topic==="__weak"?"Weak spots":topic};drawQ()}
+function answerQ(k){const q=Q.items[Q.i];if(Q.sel!==null)return;Q.sel=k;const ok=k===q.answer;if(ok)Q.score++;Q.res.push({topic:q.topic,ok,q:q.q,correct:q.options[q.answer],explain:q.explain});
+const st=S[cur].st=S[cur].st||{};const s=st[q.topic]=st[q.topic]||{a:0,c:0};s.a++;if(ok)s.c++;save();drawQ()}
+function drawQ(){if(Q.i>=Q.items.length)return resultsQ();const q=Q.items[Q.i],L="ABCD";
+$("out").innerHTML=`<div class="top"><small>Question ${Q.i+1} of ${Q.items.length} · ${esc(q.topic)}</small><span style="flex:1"></span><small>Score ${Q.score}</small></div><div class="bar"><i style="width:${100*Q.i/Q.items.length}%"></i></div><h4>${esc(q.q)}</h4>`+q.options.map((o,i)=>`<button class="opt ${Q.sel===null?"":i===q.answer?"ok":i===Q.sel?"bad":""}" data-o="${i}"><b>${L[i]}.</b> ${esc(o)}</button>`).join("")+(Q.sel!==null?`<p><b>${Q.sel===q.answer?"Correct.":"Not quite."}</b> ${esc(q.explain||"")}</p><button id="nx">${Q.i+1<Q.items.length?"Next question":"See results"}</button>`:"")+`<div class="top"><button class="g" id="qx">Quit quiz</button></div>`;
+document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>answerQ(+b.dataset.o));
+if($("nx"))$("nx").onclick=()=>{Q.i++;Q.sel=null;drawQ()};$("qx").onclick=()=>{Q=null;tab="topics";tabs();show()}}
+function resultsQ(){const n=Q.items.length,p=Math.round(100*Q.score/n);(S[cur].hist=S[cur].hist||[]).push({d:Date.now(),s:Q.score,n,t:Q.label,c:cur});save();
+const by={};Q.res.forEach(r=>{const x=by[r.topic]=by[r.topic]||{a:0,c:0};x.a++;if(r.ok)x.c++});
+const wrong=Q.res.filter(r=>!r.ok);
+$("out").innerHTML=`<h3>Score: ${Q.score}/${n} (${p}%)</h3><div class="bar"><i style="width:${p}%;background:${col(p)}"></i></div><h4>This quiz by topic</h4>`+Object.entries(by).map(([t,x])=>{const q=Math.round(100*x.c/x.a);return`<div class="tr"><div style="flex:1"><b>${esc(t)}</b><div class="bar"><i style="width:${q}%;background:${col(q)}"></i></div></div><span>${x.c}/${x.a}</span></div>`}).join("")+(wrong.length?`<h4>Review your mistakes</h4>`+wrong.map(r=>`<p><b>${esc(r.q)}</b><br>Correct answer: ${esc(r.correct)}<br><small>${esc(r.explain||"")}</small></p>`).join(""):"<p>Perfect score. Try the weak-spots quiz or a harder course.</p>")+`<div class="top"><button id="nq">New quiz</button><button class="g" id="tp">Topic breakdown</button></div>`;
+$("nq").onclick=()=>{Q=null;viewQuiz()};$("tp").onclick=()=>{Q=null;tab="topics";tabs();show()}}
+render();
+if("serviceWorker"in navigator&&location.protocol!=="file:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script></body></html>
